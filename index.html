@@ -1,203 +1,260 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EcoRetos 🌱</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CaloriColor 💕</title>
 
-    <style>
-        * {
-            box-sizing: border-box;
-        }
+<style>
+    * {
+        box-sizing: border-box;
+    }
 
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #e8f5e9;
-            color: #234d20;
-        }
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #ffb6d9, #b8e7ff, #d8b4fe);
+        min-height: 100vh;
+        padding: 25px;
+    }
 
-        header {
-            background: #2e7d32;
-            color: white;
-            text-align: center;
-            padding: 30px 20px;
-        }
+    .app {
+        max-width: 500px;
+        margin: auto;
+        background: white;
+        border-radius: 30px;
+        padding: 25px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    }
 
-        header h1 {
-            margin: 0;
-            font-size: 40px;
-        }
+    h1 {
+        text-align: center;
+        color: #ff4f9a;
+        margin-bottom: 5px;
+    }
 
-        header p {
-            font-size: 18px;
-        }
+    .subtitulo {
+        text-align: center;
+        color: #666;
+        margin-bottom: 25px;
+    }
 
-        .contenedor {
-            max-width: 1000px;
-            margin: auto;
-            padding: 25px;
-        }
+    .emoji {
+        text-align: center;
+        font-size: 55px;
+    }
 
-        .introduccion {
-            background: white;
-            padding: 20px;
-            border-radius: 15px;
-            text-align: center;
-            margin-bottom: 25px;
-            box-shadow: 0 3px 10px #0002;
-        }
+    label {
+        display: block;
+        margin-top: 15px;
+        font-weight: bold;
+        color: #555;
+    }
 
-        .retos {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
-        }
+    input, select {
+        width: 100%;
+        padding: 13px;
+        margin-top: 7px;
+        border: 2px solid #ffd0e6;
+        border-radius: 12px;
+        font-size: 16px;
+        outline: none;
+    }
 
-        .reto {
-            background: white;
-            padding: 20px;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: 0 3px 10px #0002;
-        }
+    input:focus, select:focus {
+        border-color: #ff66a8;
+    }
 
-        .reto h3 {
-            color: #2e7d32;
-        }
+    .botones {
+        display: flex;
+        gap: 10px;
+        margin-top: 25px;
+    }
 
-        .reto button {
-            background: #43a047;
-            color: white;
-            border: none;
-            padding: 10px 18px;
-            border-radius: 10px;
-            cursor: pointer;
-            font-size: 15px;
-        }
+    button {
+        flex: 1;
+        padding: 14px;
+        border: none;
+        border-radius: 15px;
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+    }
 
-        .reto button:hover {
-            background: #1b5e20;
-        }
+    .calcular {
+        background: #ff5fa2;
+    }
 
-        .completado {
-            background: #c8e6c9;
-        }
+    .limpiar {
+        background: #8e7dff;
+    }
 
-        #puntos {
-            text-align: center;
-            font-size: 25px;
-            font-weight: bold;
-            margin: 25px;
-        }
+    button:hover {
+        transform: scale(1.03);
+    }
 
-        footer {
-            background: #1b5e20;
-            color: white;
-            text-align: center;
-            padding: 20px;
-            margin-top: 30px;
-        }
-    </style>
+    #resultado {
+        display: none;
+        margin-top: 25px;
+        padding: 20px;
+        border-radius: 20px;
+        background: linear-gradient(135deg, #fff0f7, #e9f7ff);
+        text-align: center;
+    }
+
+    #calorias {
+        font-size: 38px;
+        color: #ff4f9a;
+        font-weight: bold;
+    }
+
+    .barra {
+        height: 18px;
+        background: #eee;
+        border-radius: 20px;
+        overflow: hidden;
+        margin-top: 15px;
+    }
+
+    #progreso {
+        height: 100%;
+        width: 0%;
+        background: linear-gradient(90deg, #ff65a8, #8e7dff);
+        transition: 1s;
+    }
+
+    .mensaje {
+        margin-top: 15px;
+        color: #555;
+    }
+
+    .nota {
+        font-size: 12px;
+        color: #777;
+        margin-top: 20px;
+        text-align: center;
+    }
+</style>
 </head>
 
 <body>
 
-    <header>
-        <h1>🌱 EcoRetos</h1>
-        <p>Pequeñas acciones para cuidar nuestro planeta</p>
-    </header>
+<div class="app">
 
-    <div class="contenedor">
+    <div class="emoji">🍓✨</div>
 
-        <div class="introduccion">
-            <h2>🌎 ¡Acepta el reto!</h2>
-            <p>
-                Completa diferentes retos ecológicos y gana puntos
-                mientras ayudas a cuidar el medio ambiente.
-            </p>
-        </div>
+    <h1>CaloriColor</h1>
 
-        <div id="puntos">
-            ⭐ Puntos: <span id="contador">0</span>
-        </div>
+    <p class="subtitulo">
+        Descubre una estimación de tus calorías diarias 💕
+    </p>
 
-        <div class="retos">
+    <label>Edad</label>
+    <input type="number" id="edad" placeholder="Ej: 16">
 
-            <div class="reto">
-                <h3>💧 Reto del agua</h3>
-                <p>Cierra la llave mientras te cepillas los dientes.</p>
-                <button onclick="completarReto(this, 10)">
-                    Completar
-                </button>
-            </div>
+    <label>Sexo</label>
+    <select id="sexo">
+        <option value="">Selecciona</option>
+        <option value="mujer">Mujer</option>
+        <option value="hombre">Hombre</option>
+    </select>
 
-            <div class="reto">
-                <h3>♻️ Reto del reciclaje</h3>
-                <p>Separa correctamente los residuos de tu casa.</p>
-                <button onclick="completarReto(this, 15)">
-                    Completar
-                </button>
-            </div>
+    <label>Peso (kg)</label>
+    <input type="number" id="peso" placeholder="Ej: 55">
 
-            <div class="reto">
-                <h3>💡 Reto de energía</h3>
-                <p>Apaga las luces que no estés utilizando.</p>
-                <button onclick="completarReto(this, 10)">
-                    Completar
-                </button>
-            </div>
+    <label>Altura (cm)</label>
+    <input type="number" id="altura" placeholder="Ej: 165">
 
-            <div class="reto">
-                <h3>🌳 Reto verde</h3>
-                <p>Cuida una planta o siembra una nueva.</p>
-                <button onclick="completarReto(this, 20)">
-                    Completar
-                </button>
-            </div>
+    <label>Nivel de actividad</label>
+    <select id="actividad">
+        <option value="">Selecciona</option>
+        <option value="1.2">Poco activo 🛋️</option>
+        <option value="1.375">Actividad ligera 🚶</option>
+        <option value="1.55">Actividad moderada 🏃</option>
+        <option value="1.725">Muy activo 🏋️</option>
+    </select>
 
-            <div class="reto">
-                <h3>🚲 Reto de transporte</h3>
-                <p>Camina o usa bicicleta para un recorrido corto.</p>
-                <button onclick="completarReto(this, 15)">
-                    Completar
-                </button>
-            </div>
-
-            <div class="reto">
-                <h3>🛍️ Reto sin plástico</h3>
-                <p>Usa una bolsa reutilizable en tus compras.</p>
-                <button onclick="completarReto(this, 10)">
-                    Completar
-                </button>
-            </div>
-
-        </div>
+    <div class="botones">
+        <button class="calcular" onclick="calcular()">Calcular 💖</button>
+        <button class="limpiar" onclick="limpiar()">Limpiar 🧹</button>
     </div>
 
-    <footer>
-        <p>🌱 EcoRetos | Cuidar el planeta es responsabilidad de todos</p>
-    </footer>
+    <div id="resultado">
 
-    <script>
-        let puntos = 0;
+        <h2>🌈 Tu resultado</h2>
 
-        function completarReto(boton, puntosGanados) {
+        <p>Estimación diaria:</p>
 
-            if (boton.innerText === "Completado ✓") {
-                return;
-            }
+        <div id="calorias">0 kcal</div>
 
-            puntos += puntosGanados;
+        <div class="barra">
+            <div id="progreso"></div>
+        </div>
 
-            document.getElementById("contador").innerText = puntos;
+        <p class="mensaje" id="mensaje"></p>
 
-            boton.innerText = "Completado ✓";
-            boton.parentElement.classList.add("completado");
+    </div>
 
-            alert("¡Reto completado! Ganaste " + puntosGanados + " puntos 🌱");
-        }
-    </script>
+    <p class="nota">
+        ⚠️ Esta calculadora proporciona una estimación y no sustituye
+        la orientación de un profesional de la salud.
+    </p>
+
+</div>
+
+<script>
+
+function calcular() {
+
+    let edad = Number(document.getElementById("edad").value);
+    let peso = Number(document.getElementById("peso").value);
+    let altura = Number(document.getElementById("altura").value);
+    let sexo = document.getElementById("sexo").value;
+    let actividad = Number(document.getElementById("actividad").value);
+
+    if (!edad || !peso || !altura || !sexo || !actividad) {
+        alert("🌸 Completa todos los datos primero.");
+        return;
+    }
+
+    let metabolismo;
+
+    if (sexo === "mujer") {
+        metabolismo = (10 * peso) + (6.25 * altura) - (5 * edad) - 161;
+    } else {
+        metabolismo = (10 * peso) + (6.25 * altura) - (5 * edad) + 5;
+    }
+
+    let calorias = Math.round(metabolismo * actividad);
+
+    document.getElementById("resultado").style.display = "block";
+
+    document.getElementById("calorias").innerText =
+        calorias + " kcal";
+
+    let porcentaje = Math.min((calorias / 3000) * 100, 100);
+
+    document.getElementById("progreso").style.width =
+        porcentaje + "%";
+
+    document.getElementById("mensaje").innerText =
+        "✨ Esta es una estimación de tus necesidades energéticas diarias.";
+}
+
+function limpiar() {
+
+    document.getElementById("edad").value = "";
+    document.getElementById("peso").value = "";
+    document.getElementById("altura").value = "";
+    document.getElementById("sexo").value = "";
+    document.getElementById("actividad").value = "";
+
+    document.getElementById("resultado").style.display = "none";
+    document.getElementById("progreso").style.width = "0%";
+}
+
+</script>
 
 </body>
 </html>
