@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoRetos 🌱</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #e8f5e9;
+            color: #234d20;
+        }
+
+        header {
+            background: #2e7d32;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 40px;
+        }
+
+        header p {
+            font-size: 18px;
+        }
+
+        .contenedor {
+            max-width: 1000px;
+            margin: auto;
+            padding: 25px;
+        }
+
+        .introduccion {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 25px;
+            box-shadow: 0 3px 10px #0002;
+        }
+
+        .retos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .reto {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 3px 10px #0002;
+        }
+
+        .reto h3 {
+            color: #2e7d32;
+        }
+
+        .reto button {
+            background: #43a047;
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        .reto button:hover {
+            background: #1b5e20;
+        }
+
+        .completado {
+            background: #c8e6c9;
+        }
+
+        #puntos {
+            text-align: center;
+            font-size: 25px;
+            font-weight: bold;
+            margin: 25px;
+        }
+
+        footer {
+            background: #1b5e20;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>🌱 EcoRetos</h1>
+        <p>Pequeñas acciones para cuidar nuestro planeta</p>
+    </header>
+
+    <div class="contenedor">
+
+        <div class="introduccion">
+            <h2>🌎 ¡Acepta el reto!</h2>
+            <p>
+                Completa diferentes retos ecológicos y gana puntos
+                mientras ayudas a cuidar el medio ambiente.
+            </p>
+        </div>
+
+        <div id="puntos">
+            ⭐ Puntos: <span id="contador">0</span>
+        </div>
+
+        <div class="retos">
+
+            <div class="reto">
+                <h3>💧 Reto del agua</h3>
+                <p>Cierra la llave mientras te cepillas los dientes.</p>
+                <button onclick="completarReto(this, 10)">
+                    Completar
+                </button>
+            </div>
+
+            <div class="reto">
+                <h3>♻️ Reto del reciclaje</h3>
+                <p>Separa correctamente los residuos de tu casa.</p>
+                <button onclick="completarReto(this, 15)">
+                    Completar
+                </button>
+            </div>
+
+            <div class="reto">
+                <h3>💡 Reto de energía</h3>
+                <p>Apaga las luces que no estés utilizando.</p>
+                <button onclick="completarReto(this, 10)">
+                    Completar
+                </button>
+            </div>
+
+            <div class="reto">
+                <h3>🌳 Reto verde</h3>
+                <p>Cuida una planta o siembra una nueva.</p>
+                <button onclick="completarReto(this, 20)">
+                    Completar
+                </button>
+            </div>
+
+            <div class="reto">
+                <h3>🚲 Reto de transporte</h3>
+                <p>Camina o usa bicicleta para un recorrido corto.</p>
+                <button onclick="completarReto(this, 15)">
+                    Completar
+                </button>
+            </div>
+
+            <div class="reto">
+                <h3>🛍️ Reto sin plástico</h3>
+                <p>Usa una bolsa reutilizable en tus compras.</p>
+                <button onclick="completarReto(this, 10)">
+                    Completar
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <p>🌱 EcoRetos | Cuidar el planeta es responsabilidad de todos</p>
+    </footer>
+
+    <script>
+        let puntos = 0;
+
+        function completarReto(boton, puntosGanados) {
+
+            if (boton.innerText === "Completado ✓") {
+                return;
+            }
+
+            puntos += puntosGanados;
+
+            document.getElementById("contador").innerText = puntos;
+
+            boton.innerText = "Completado ✓";
+            boton.parentElement.classList.add("completado");
+
+            alert("¡Reto completado! Ganaste " + puntosGanados + " puntos 🌱");
+        }
+    </script>
+
+</body>
+</html>
